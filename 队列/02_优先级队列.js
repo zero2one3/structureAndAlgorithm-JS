@@ -56,11 +56,4 @@ function PriorityQueue() {
     }
 }
 
-let pq = new PriorityQueue()
-
-pq.enqueue('abc', 10)
-pq.enqueue('abb', 1)
-pq.enqueue('cdf', 9)
-pq.enqueue('eee', 9)
-
-console.log(pq.toString())
+export default PriorityQueue

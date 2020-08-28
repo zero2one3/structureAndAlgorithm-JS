@@ -176,16 +176,7 @@ function DoubleLinkedList() {
     }
 }
 
-let dl = new DoubleLinkedList()
-
-dl.append('C++')
-dl.append('js')
-dl.append('python')
-
-dl.remove('j1')
-
-console.log(dl.toString())
-console.log(dl.length)
+export default DoubleLinkedList
 
 
 

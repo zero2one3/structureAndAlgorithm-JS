@@ -159,15 +159,7 @@ function LinkedList() {
     }
 }
 
-let linkedlist = new LinkedList()
-
-linkedlist.append('javascript')
-linkedlist.append('python')
-linkedlist.append('java')
-
-
-
-console.log(linkedlist.toString())
+export default LinkedList
 
 
 

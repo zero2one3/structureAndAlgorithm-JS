@@ -42,10 +42,23 @@ function HashTable() {
                 current[i][1] = value
                 return;
             }
-            //未存在相同数据,直接添加数据
-            current.push([key, value])
-            this.count ++
         }
+
+        //未存在相同数据,直接添加数据
+        current.push([key, value])
+        this.count ++
+
+        //判断是否需要进行扩容
+        if(this.count / this.length >= 0.75) {
+            //将哈希表容量扩大一倍
+            let newLength = this.length * 2
+            //获取质数容量
+            newLength = this.toPrime(newLength)
+            //扩容
+            this.resize(newLength)
+        }
+        
+        
 
     }
 
@@ -86,11 +99,25 @@ function HashTable() {
 
         //该下标值位置有数据,则遍历数组找到对应数据删除
         for (let i in current) {
+            let inner = current[i]
             //找对对应数据了，删除该数据
-            if(current[i][0] === key) {
+            if(inner[0] === key) {
                 current.splice(i, 1)
                 this.count --
-                return true
+
+                // 判断是否需要减容
+                if(this.count / this.length < 0.25 && this.length > 7) {
+                    // 将哈希表容量减小一倍
+                    let number = Math.floor(this.length / 2)
+
+                    // 获取质数容量
+                    number = this.toPrime(number)
+
+                    // 减容
+                    this.resize(number)
+                }
+
+                return inner[1]
             }
         }
 
@@ -100,11 +127,7 @@ function HashTable() {
 
     //判断哈希表是否为空
     HashTable.prototype.isEmpty = function () {
-        if(this.count === 0) {
-            return true
-        }
-
-        return false
+        return this.count === 0
     }
 
     //返回哈希表内元素个数
@@ -112,7 +135,64 @@ function HashTable() {
         return this.count
     }
 
+    //改变哈希表的容量
+    HashTable.prototype.resize = function(newLength) {
+        // 1.将旧的哈希表赋值给新变量
+        let oldStorage = this.storage
+
+        // 2.创建新的空数组作为新的哈希表容器
+        this.storage = []
+
+        // 3.修改哈希表容量
+        this.length = newLength
+
+        // 4.遍历旧的哈希表
+        for(let i = 0; i < oldStorage.length; i++) {
+
+            let box = oldStorage[i]
+
+            // 4.1 某索引位置上没有数据
+            if(box === null) {
+                continue;
+            }
+
+            // 4.2 某索引上有数据
+            for(let j = 0; j < box.length; j++) {
+
+                let inner_box = box[j]
+
+                // 4.2.1 将数据重新经过哈希化插入到新的哈希表中
+                this.put(inner_box[0], inner_box[1])
+            }
+        }
+    }
+
+    //判断是是否为质数
+    HashTable.prototype.isPrime = function(number) {
+        //获取算数平方根，并取整
+        let sqrt = Math.floor(Math.sqrt(number))
+
+        //从2开始遍历到算数平方根
+        for(let i = 2; i <= sqrt; i++) {
+            //能被整除，返回 false
+            if(number % i === 0) return false;
+        }
+        //不能被整除，返回 true
+        return true
+    }
+
+    //获取离某个数最近地质数并返回
+    HashTable.prototype.toPrime = function(number) {
+
+        while(!this.isPrime(number)) {
+            number ++
+        }
+        return number
+    }
+
 }
 
-
+export default {
+    HashTable
+}
 

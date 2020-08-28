@@ -36,7 +36,7 @@ function Queue() {
     }
 }
 
-let queue = new Queue()
+export default Queue
 
 
 

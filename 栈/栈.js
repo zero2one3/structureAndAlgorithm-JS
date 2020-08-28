@@ -37,5 +37,5 @@ function Stack() {
     }
 }
 
-let stack = new Stack()
+export default  Stack
 
