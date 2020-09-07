@@ -47,68 +47,55 @@ function BinarySearchTree() {
     }
 
     // 先序遍历并返回结果（外部函数）
-    BinarySearchTree.prototype.preOrder = function() {
-        let obj = {
-            str : ''
-        }
+    BinarySearchTree.prototype.preOrder = function(handle) {
 
-        this.preOrderNodes(this.root, obj)
-
-        return obj.str
-        
+        this.preOrderNodes(this.root, handle)
+       
     }
 
     // 以先序遍历的方式遍历整个树（内部函数）
-    BinarySearchTree.prototype.preOrderNodes = function(node, obj) {
+    BinarySearchTree.prototype.preOrderNodes = function(node, handle) {
         if(node !== null) {
             
-            obj.str += node.key + ' '
+            handle(node.key)
 
-            this.preOrderNodes(node.left, obj)
+            this.preOrderNodes(node.left, handle)
 
-            this.preOrderNodes(node.right, obj)
+            this.preOrderNodes(node.right, handle)
         }
         
     }
 
     // 中序遍历并返回结果（外部函数）
-    BinarySearchTree.prototype.inOrder = function() {
-        let obj = {
-            str : ''
-        }
-        this.inOrderNodes(this.root, obj)
+    BinarySearchTree.prototype.inOrder = function(handle) {
 
-        return obj.str
+        this.inOrderNodes(this.root, handle)
         
     }
 
     // 以中序遍历的方式遍历整个树（内部函数）
-    BinarySearchTree.prototype.inOrderNodes = function(node, obj) {
+    BinarySearchTree.prototype.inOrderNodes = function(node, handle) {
         if(node !== null) {
-            this.inOrderNodes(node.left, obj)
-            obj.str += node.key + ' '
-            this.inOrderNodes(node.right, obj)
+            this.inOrderNodes(node.left, handle)
+            handle(node.key)
+            this.inOrderNodes(node.right, handle)
         }
              
     }
 
     // 后序遍历并返回结果（外部函数）
-    BinarySearchTree.prototype.postOrder = function() {
-        let obj = {
-            str : ''
-        }
-        this.postOrderNodes(this.root, obj)
+    BinarySearchTree.prototype.postOrder = function(handle) {
 
-        return obj.str
+        this.postOrderNodes(this.root, handle)
         
     }
 
     // 以后序遍历的方式遍历整个树（内部函数）
-    BinarySearchTree.prototype.postOrderNodes = function(node, obj) {
+    BinarySearchTree.prototype.postOrderNodes = function(node, handle) {
         if(node !== null) {
-            this.postOrderNodes(node.left, obj)
-            this.postOrderNodes(node.right, obj)
-            obj.str += node.key + ' '
+            this.postOrderNodes(node.left, handle)
+            this.postOrderNodes(node.right, handle)
+            handle(node.key)
         }
              
     }
@@ -243,8 +230,4 @@ function BinarySearchTree() {
         
     }
 
-}
-
-export default {
-    BinarySearchTree
 }
