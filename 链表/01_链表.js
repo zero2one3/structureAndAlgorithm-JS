@@ -158,13 +158,3 @@ function LinkedList() {
         return this.length
     }
 }
-
-export default LinkedList
-
-
-
-
-
-
-
-

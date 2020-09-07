@@ -36,6 +36,3 @@ function Stack() {
         return string
     }
 }
-
-export default  Stack
-

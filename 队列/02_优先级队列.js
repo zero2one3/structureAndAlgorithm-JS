@@ -56,4 +56,3 @@ function PriorityQueue() {
     }
 }
 
-export default PriorityQueue

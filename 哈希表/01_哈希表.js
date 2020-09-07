@@ -192,7 +192,5 @@ function HashTable() {
 
 }
 
-export default {
-    HashTable
-}
+
 

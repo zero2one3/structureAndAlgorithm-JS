@@ -175,9 +175,3 @@ function DoubleLinkedList() {
         return this.length
     }
 }
-
-export default DoubleLinkedList
-
-
-
-
