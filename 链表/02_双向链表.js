@@ -45,6 +45,7 @@ function DoubleLinkedList() {
             node.next = this.head
             this.head.prev = node
             this.head = node
+            this.length ++
         }
         else {
             while (index < position) {
@@ -56,8 +57,8 @@ function DoubleLinkedList() {
             current.prev = node
             node.prev = prev
             node.next = current
+            this.length ++
         }
-        this.length ++
     }
 
     //展示链表数据
