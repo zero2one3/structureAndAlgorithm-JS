@@ -124,8 +124,13 @@ function DoubleLinkedList() {
             return false
         }
 
+        // 判断清除的元素是否为链表的唯一元素
+        if(position === 0 && position === this.length - 1) {
+            this.head = null
+            this.tail = null
+        }
         //判断清除的元素是否为链表的第一个元素
-        if(position === 0) {
+        else if(position === 0) {
             this.head.next.prev = null
             this.head = this.head.next
         }
@@ -148,7 +153,6 @@ function DoubleLinkedList() {
         }
         this.length --
         return true
-
     }
 
     //移除某元素
