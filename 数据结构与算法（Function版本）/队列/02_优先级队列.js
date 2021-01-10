@@ -5,6 +5,7 @@ function PriorityQueue() {
         this.element = e
         this.priority = num
     }
+    
     //入列
     PriorityQueue.prototype.enqueue = function (e, priority) {
         let element = new EachElement(e, priority)
