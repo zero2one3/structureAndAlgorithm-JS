@@ -40,7 +40,7 @@ function Set() {
         return Object.keys(this.items)
     }
 
-    // 获取交集
+    // 获取并集
     Set.prototype.union = function(otherSet) {
         let newSet = new Set()
 
@@ -57,7 +57,7 @@ function Set() {
         return newSet
     }
 
-    // 获取并集
+    // 获取交集
     Set.prototype.intersect = function(otherSet) {
         let newSet = new Set()
         
