@@ -8,7 +8,7 @@ function bubbleSort(arr) {
 
     // 数组长度
     let length = arr.length
-
+    
     for(let i = length - 1; i >= 0; i --) {
         for(let j = 0; j < i; j ++) {
             if(arr[j] > arr[j + 1]) {
