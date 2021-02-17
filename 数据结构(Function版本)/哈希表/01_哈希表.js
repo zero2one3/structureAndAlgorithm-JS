@@ -22,7 +22,7 @@ function HashTable() {
         //取余
         return hashCode % size
     }
-
+    
     //插入或修改数据
     HashTable.prototype.put = function (key, value) {
         //哈希化获得下标值
